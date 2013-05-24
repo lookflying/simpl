@@ -1,0 +1,63 @@
+package parse;
+import java_cup.runtime.*;
+import syntax.*;
+
+terminal String ID;
+terminal Integer INT;
+terminal BOOLEAN;
+terminal CONS, COMMA, LPAREN, RPAREN, EQ, ASSIGN, ARROW, PLUS, MINUS, TIMES, DIVIDE, GT, LT, UMINUS, SEMICOLON;
+terminal FUN, LET, IN, END, IF, THEN, ELSE, WHILE, DO, NIL, FST, SND, HEAD, TAIL, AND, OR, NOT; 
+
+non terminal expr;
+non terminal value;
+non terminal bop, uop;
+
+precedence right UMINUS, NOT;
+precedence left TIMES, DIVIDE;
+precedence left PLUS, MINUS;
+precedence nonassoc EQ, GT, LT;
+precedence left AND, OR;
+precedence right CONS;
+precedence nonassoc ASSIGN;
+precedence left ARROW;
+precedence left SEMICOLON;
+
+expr ::= ID:x	/*variable*/
+				| value:v	/*value*/
+				| expr:e1 CONS expr:e2	/*list*/
+				| LPAREN expr:e1 COMMA expr:e2 RPAREN /*pair*/
+				| LPAREN expr:e1 expr:e2 RPAREN	/*application*/
+				| expr:e1 bop expr:e2	/*binary_operation*/
+				| uop:u expr:e	/*unary_operation*/
+				| LET ID:x EQ expr:e1 IN expr:e2 END	/*let_expr*/
+				| IF expr:e1 THEN expr:e2 ELSE expr:e3 END	/*conditional*/
+				| expr:e1 ASSIGN expr:e2	/*assignment*/
+				| expr:e1 SEMICOLON expr:e2	/*sequence*/
+				| WHILE expr:e1 DO expr:e2 END	/*while_loop*/
+				| FST expr:e	/*first_element_pair*/
+				| SND expr:e	/*second_element_pair*/
+				| HEAD expr:e	/*head_of_list*/
+				| TAIL expr:e	/*tail_of_list*/
+				| LPAREN expr:e RPAREN	/*bracket_expr*/
+;
+value ::= INT:i	/*integer*/
+				| BOOLEAN:b	/*boolean*/
+				| NIL	/*empty list*/
+				| LPAREN RPAREN	/*unit value*/
+				| FUN ID ARROW expr:e	/*anonymous function*/
+				| LPAREN value:v1 COMMA value:v2	/*pair value*/
+				| value:v1 CONS value:v2	/*list value*/
+;
+bop ::= PLUS
+				| MINUS
+				| TIMES
+				| DIVIDE
+				| EQ
+				| GT
+				| LT
+				| AND
+				| OR
+;
+uop ::= UMINUS
+				| NOT
+;		

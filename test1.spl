@@ -1,0 +1,9 @@
+let
+	f = fun x -> (if x = 1 then 1 else x * (f (x - 1)) end)
+in/*helkjfl/*l;kjs///888s
+																								
+																								
+																								**sdfas*/*/
+	(f/*/8?*//*8/8/8/*8*/8 */4/*8?/*?*/*/)
+end
+$
