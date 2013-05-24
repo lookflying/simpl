@@ -1,5 +1,5 @@
 package run;
-
+import semantic.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
@@ -20,7 +20,8 @@ public class Main {
 				parser p = new parser(new Lexer(new FileReader(filename)));
 				 p.parse();
 				 System.out.println(p.result.toString());
-				 
+				 Env env = new Env();
+				 env.translate(p.result);
 			} catch (FileNotFoundException e) {
 				System.out.println(String.format("No such file: %s.", filename));
 				ok = false;
