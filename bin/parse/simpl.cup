@@ -2,62 +2,108 @@ package parse;
 import java_cup.runtime.*;
 import syntax.*;
 
+
+parser code {:
+	public Expression result;
+
+:}
+
 terminal String ID;
 terminal Integer INT;
-terminal BOOLEAN;
+terminal Boolean BOOLEAN;
 terminal CONS, COMMA, LPAREN, RPAREN, EQ, ASSIGN, ARROW, PLUS, MINUS, TIMES, DIVIDE, GT, LT, UMINUS, SEMICOLON;
 terminal FUN, LET, IN, END, IF, THEN, ELSE, WHILE, DO, NIL, FST, SND, HEAD, TAIL, AND, OR, NOT; 
 
-non terminal expr;
+non terminal expr, program;
 non terminal value;
 non terminal bop, uop;
 
-precedence right UMINUS, NOT;
-precedence left TIMES, DIVIDE;
-precedence left PLUS, MINUS;
-precedence nonassoc EQ, GT, LT;
-precedence left AND, OR;
-precedence right CONS;
-precedence nonassoc ASSIGN;
-precedence left ARROW;
+
 precedence left SEMICOLON;
+precedence left ARROW;
+precedence nonassoc ASSIGN;
+precedence right CONS;
+precedence left AND, OR;
+precedence nonassoc EQ, GT, LT;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
+precedence right UMINUS, NOT;
+
+start with program;
+
+program ::= expr:e {: parser.result = (Expression)e; :};
+
 
 expr ::= ID:x	/*variable*/
+					{: RESULT = new Variable(x); :}	
 				| value:v	/*value*/
+					{: RESULT = (Expression)v ; :}
 				| expr:e1 CONS expr:e2	/*list*/
+					{: RESULT = new List(e1, e2); :}
 				| LPAREN expr:e1 COMMA expr:e2 RPAREN /*pair*/
+					{: RESULT = new Pair(e1, e2); :}
 				| LPAREN expr:e1 expr:e2 RPAREN	/*application*/
-				| expr:e1 bop expr:e2	/*binary_operation*/
+					{: RESULT = new Application(e1, e2); :}
+				| expr:e1 TIMES expr:e2	/*binary_operation*/
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.times, e2); :}
+				| expr:e1 DIVIDE expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.devide, e2); :}
+				| expr:e1 PLUS expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.plus, e2); :}
+				| expr:e1 MINUS expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.minus, e2); :}
+				| expr:e1 EQ expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.equal, e2); :}
+				| expr:e1 GT expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.biggerThan, e2); :}
+				| expr:e1 LT expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.lessThan, e2); :}
+				| expr:e1 AND expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.and, e2); :}
+				| expr:e1 OR expr:e2
+					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.or, e2); :}
 				| uop:u expr:e	/*unary_operation*/
+					{: RESULT = new UnaryOperation(u, e); :}
 				| LET ID:x EQ expr:e1 IN expr:e2 END	/*let_expr*/
+					{: RESULT = new LetInEnd(x, e1, e2); :}
 				| IF expr:e1 THEN expr:e2 ELSE expr:e3 END	/*conditional*/
+					{: RESULT = new IfThenElse(e1, e2, e3); :}
 				| expr:e1 ASSIGN expr:e2	/*assignment*/
+					{: RESULT = new Assignment(e1, e2); :}
 				| expr:e1 SEMICOLON expr:e2	/*sequence*/
+					{: RESULT = new Sequence(e1, e2); :}
 				| WHILE expr:e1 DO expr:e2 END	/*while_loop*/
+					{: RESULT = new WhileDoEnd(e1, e2); :}
 				| FST expr:e	/*first_element_pair*/
+					{: RESULT = new First(e); :}
 				| SND expr:e	/*second_element_pair*/
+					{: RESULT = new Second(e); :}
 				| HEAD expr:e	/*head_of_list*/
+					{: RESULT = new Head(e); :}
 				| TAIL expr:e	/*tail_of_list*/
+					{: RESULT = new Tail(e); :}
 				| LPAREN expr:e RPAREN	/*bracket_expr*/
+					{: RESULT = new Bracket(e); :}
 ;
 value ::= INT:i	/*integer*/
+					{: RESULT = new IntValue(i) ; :}
 				| BOOLEAN:b	/*boolean*/
+					{: RESULT = new BoolValue(b); :}
 				| NIL	/*empty list*/
+					{: RESULT = new Nil(); :}
 				| LPAREN RPAREN	/*unit value*/
-				| FUN ID ARROW expr:e	/*anonymous function*/
-				| LPAREN value:v1 COMMA value:v2	/*pair value*/
+					{: RESULT = new Nop(); :}
+				| FUN ID:x ARROW expr:e	/*anonymous function*/
+					{: RESULT = new AnonymousFunction(x, e); :}
+				| LPAREN value:v1 COMMA value:v2 RPAREN	/*pair value*/
+					{: RESULT = new PairValue(v1, v2); :}
 				| value:v1 CONS value:v2	/*list value*/
+					{: RESULT = new ListValue(v1, v2); :}
 ;
-bop ::= PLUS
-				| MINUS
-				| TIMES
-				| DIVIDE
-				| EQ
-				| GT
-				| LT
-				| AND
-				| OR
-;
+
+
 uop ::= UMINUS
+					{: RESULT = UnaryOperation.UnaryOperator.negative; :}
 				| NOT
+					{: RESULT = UnaryOperation.UnaryOperator.not; :}
 ;		
