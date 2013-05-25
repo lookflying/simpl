@@ -73,6 +73,7 @@ IntegerLiteral = [0-9]+
 <YYINITIAL> "tail" {report(yytext());return symbol(sym.TAIL);}
 <YYINITIAL> "and" {report(yytext());return symbol(sym.AND);}
 <YYINITIAL> "or" {report(yytext());return symbol(sym.OR);}
+<YYINITIAL> "not" {report(yytext());return symbol(sym.NOT);}
 
 <YYINITIAL> "true"|"false" {report(yytext());return symbol(sym.BOOLEAN, new Boolean(yytext()));}
 
