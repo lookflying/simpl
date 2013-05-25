@@ -10,6 +10,14 @@ public class IntValue extends Value{
 	boolean isUndef;
 	int value;
 
+	public boolean isUndef() {
+		return isUndef;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
 	public IntValue(Integer i, int l, int c) {
 		super(l, c);
 		value = i;

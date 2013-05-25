@@ -28,4 +28,8 @@ public class BoolValue extends Value {
 	public Type getType() {
 		return BoolType.getInstance();
 	}
+	
+	public boolean getValue() {
+		return value;
+	}
 }
