@@ -9,9 +9,11 @@ import java_cup.runtime.*;
 %column
 %public
 
+%scanerror SyntaxError
+
 %{
 	private void report(String text){
-		ErrorMessage.report(text, yyline, yycolumn);	
+		ErrorMessage.report(text, yyline + 1, yycolumn + 1);	
 	}
 	private void pos(String msg){
 		System.out.println(msg + String.format(" line %d, column %d", yyline + 1, yycolumn + 1));
@@ -25,8 +27,8 @@ import java_cup.runtime.*;
 		return new Symbol(type, yyline, yycolumn, value);
 	}
 
-	private void error(String msg){
-		System.out.println(msg);
+	private void error(String msg) throws SyntaxError{
+		throw new SyntaxError(msg);
 	}
 %}
 
@@ -71,6 +73,7 @@ IntegerLiteral = [0-9]+
 <YYINITIAL> "tail" {report(yytext());return symbol(sym.TAIL);}
 <YYINITIAL> "and" {report(yytext());return symbol(sym.AND);}
 <YYINITIAL> "or" {report(yytext());return symbol(sym.OR);}
+<YYINITIAL> "not" {report(yytext());return symbol(sym.NOT);}
 
 <YYINITIAL> "true"|"false" {report(yytext());return symbol(sym.BOOLEAN, new Boolean(yytext()));}
 
