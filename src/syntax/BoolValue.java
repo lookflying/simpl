@@ -7,7 +7,8 @@ import type.Type;
 public class BoolValue extends Value {
 	boolean value;
 
-	public BoolValue(Boolean b) {
+	public BoolValue(Boolean b, int l, int c) {
+		super(l, c);
 		value = b;
 	}
 

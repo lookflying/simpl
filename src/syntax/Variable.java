@@ -5,7 +5,8 @@ import semantic.Env;
 public class Variable extends Expression{
 	String name;
 	
-	public Variable(String x) {
+	public Variable(String x, int l, int c) {
+		super(l, c);
 		name = x;
 	}
 

@@ -5,6 +5,9 @@ import type.ListType;
 import type.Type;
 
 public class Nil extends Value{
+	public Nil(int l, int c) {
+		super(l, c);
+	}
 	public String toString(){
 		return "nil";
 	}

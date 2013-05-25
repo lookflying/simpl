@@ -7,7 +7,8 @@ public class Assignment extends Expression{
 	Expression var;
 	Expression val;
 	
-	public Assignment(Object e1, Object e2) {
+	public Assignment(Object e1, Object e2, int l, int c) {
+		super(l, c);
 		var = (Expression) e1;
 		val = (Expression) e2;
 	}

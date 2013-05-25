@@ -12,7 +12,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws Exception {
 		boolean ok = true;
-		args = new String[] {"/home/fshrimp/git/simpl/test3.spl"};
+//		args = new String[] {"wrong1.spl"};
 //		if (args.length > 0) {
 			String filename = args[0];
 //

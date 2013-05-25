@@ -13,7 +13,8 @@ public class UnaryOperation extends Expression {
 	Expression e;
 	UnaryOperator op;
 
-	public UnaryOperation(Object u, Object e2) {
+	public UnaryOperation(Object u, Object e2, int l, int c) {
+		super(l, c);
 		op = (UnaryOperation.UnaryOperator) u;
 		e = (Expression) e2;
 	}

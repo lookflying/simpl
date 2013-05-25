@@ -12,7 +12,8 @@ public class ListValue extends Value{
 	
 	ListType type = null;
 	
-	public ListValue(Object v1, Object v2) {
+	public ListValue(Object v1, Object v2, int l, int c) {
+		super(l, c);
 		head = (Value)v1;
 		tail = (Value)v2;
 		Type headType = head == null ? NullType.getInstance() : head.getType();
@@ -28,12 +29,14 @@ public class ListValue extends Value{
 		}
 	}
 	
-	protected ListValue(){}
+	protected ListValue(int l, int c){
+		super(l, c);
+	}
 	
 	private static ListValue nilInstance;
 	
 	static {
-		nilInstance = new ListValue();
+		nilInstance = new ListValue(-1, -1);
 		nilInstance.head = NullValue.getInstance();
 		nilInstance.tail = nilInstance;
 	}

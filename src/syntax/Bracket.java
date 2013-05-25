@@ -5,7 +5,8 @@ import semantic.Env;
 public class Bracket extends Expression{
 	Expression e;
 	
-	public Bracket(Object e2) {
+	public Bracket(Object e2, int l, int c) {
+		super(l, c);
 		e = (Expression) e2;
 	}
 
