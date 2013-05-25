@@ -1,5 +1,7 @@
 package type;
 
-public class Type {
+public abstract class Type {
 
+	abstract public boolean equals(Type other);
 }
+
