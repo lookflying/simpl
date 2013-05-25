@@ -16,7 +16,7 @@ public class NullValue extends Value {
 		return this;
 	}
 	
-	private static NullValue instance;
+	private static NullValue instance = new NullValue();
 	
 	public static NullValue getInstance() {
 		return instance;
