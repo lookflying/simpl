@@ -38,13 +38,12 @@ public class UnaryOperation extends Expression {
 		switch (op) {
 		case not:
 			v.check(BoolType.getInstance(), false);
-			break;
+			return new BoolValue(!((BoolValue)v).value);
 		case negative:
 			v.check(IntType.getInstance(), false);
-			break;
+			return new IntValue(((IntValue)v).value * -1);
 		default:
 			throw new UnexpectedException();
 		}
-		return v;
 	}
 }
