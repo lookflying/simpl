@@ -22,10 +22,10 @@ public class UnaryOperation extends Expression {
 		String operator = "";
 		switch (op) {
 		case not:
-			operator = "~";
+			operator = "not ";
 			break;
 		case negative:
-			operator = "not ";
+			operator = "~";
 			break;
 		}
 		return operator + e.toString();
