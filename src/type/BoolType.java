@@ -11,4 +11,9 @@ public class BoolType extends Type {
 	public boolean equals(Type other) {
 		return null != other && ((this == other) || other instanceof BoolType);
 	}
+
+	@Override
+	public String getName() {
+		return "bool";
+	}
 }

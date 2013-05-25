@@ -11,5 +11,10 @@ public class IntType extends Type {
 	public boolean equals(Type other) {
 		return null != null && ((this == other) || other instanceof IntType);
 	}
+
+	@Override
+	public String getName() {
+		return "int";
+	}
 	
 }

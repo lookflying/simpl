@@ -19,4 +19,9 @@ public class FunType extends Type {
 		return srcType.equals(otherFunType.srcType) &&
 				dstType.equals(otherFunType.dstType);
 	}
+
+	@Override
+	public String getName() {
+		return srcType.getName() + "->" + dstType.getName();
+	}
 }

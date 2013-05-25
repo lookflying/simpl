@@ -1,3 +1,7 @@
 package syntax;
 
-public class Expression{}
+import semantic.Env;
+
+public abstract class Expression {
+	abstract public Value execute(Env env);
+}

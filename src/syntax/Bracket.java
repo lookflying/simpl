@@ -1,5 +1,7 @@
 package syntax;
 
+import semantic.Env;
+
 public class Bracket extends Expression{
 	Expression e;
 	
@@ -10,4 +12,11 @@ public class Bracket extends Expression{
 	public String toString(){
 		return "(" + e.toString() + ")";
 	}
+
+	@Override
+	public Value execute(Env env) {
+		return e.execute(env);
+	}
+	
+	
 }

@@ -12,6 +12,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		boolean ok = true;
+		args = new String[] {"/home/fshrimp/git/simpl/test3.spl"};
 		if (args.length > 0) {
 			String filename = args[0];
 
@@ -21,7 +22,8 @@ public class Main {
 				 p.parse();
 				 System.out.println(p.result.toString());
 				 Env env = new Env();
-				 env.translate(p.result);
+//				 env.translate(p.result);
+				 System.out.println(p.result.execute(env));
 			} catch (FileNotFoundException e) {
 				System.out.println(String.format("No such file: %s.", filename));
 				ok = false;

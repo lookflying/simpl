@@ -1,5 +1,7 @@
 package syntax;
 
+import semantic.Env;
+
 public class Variable extends Expression{
 	String name;
 	
@@ -9,5 +11,10 @@ public class Variable extends Expression{
 
 	public String toString(){
 		return name;
+	}
+
+	@Override
+	public Object execute(Env env) {
+		return env.lookUpValue(name);
 	}
 }

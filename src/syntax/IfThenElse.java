@@ -1,5 +1,8 @@
 package syntax;
 
+import semantic.Env;
+import type.BoolType;
+
 public class IfThenElse extends Expression{
 	Expression condition;
 	Expression thenClause;
@@ -13,5 +16,16 @@ public class IfThenElse extends Expression{
 
 	public String toString(){
 		return "if " + condition.toString() + " then " + thenClause.toString() + " else " + elseClause.toString() + " end";
+	}
+
+	@Override
+	public Value execute(Env env) {
+		Value condvalue = condition.execute(env);
+		condvalue.check(BoolType.getInstance(), false);
+		if (((BoolValue)condvalue).value) {
+			return thenClause.execute(env);
+		} else {
+			return elseClause.execute(env);
+		}
 	}
 }

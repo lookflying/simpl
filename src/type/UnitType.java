@@ -11,4 +11,9 @@ public class UnitType extends Type {
 	public boolean equals(Type other) {
 		return null != other && ((this == other) || other instanceof UnitType);
 	}
+
+	@Override
+	public String getName() {
+		return "unit";
+	}
 }
