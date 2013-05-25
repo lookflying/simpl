@@ -9,14 +9,15 @@ function run(){
 	echo "return value = $rtval"
 	if [ $rtval -eq 0 ]
 	then
-	echo "pass"
+		echo "pass"
+		cat $tmp
 	else
 		cat $tmp
 	fi
 	echo "_________________________"
 }
 
-if [ $# -eq 1 ]
+if [ $# -ge 1 ]
 then
 	target=$1
 else

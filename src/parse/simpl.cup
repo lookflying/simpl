@@ -106,10 +106,6 @@ value ::= INT:i	/*integer*/
 					{: RESULT = new Nop(lleft, lright); :}
 				| FUN:f ID:x ARROW expr:e	/*anonymous function*/
 					{: RESULT = new AnonymousFunction(x, xleft, xright, e, fleft, fright); :}
-				| LPAREN value:v1 COMMA value:v2 RPAREN	/*pair value*/
-					{: RESULT = new PairValue(v1, v2, v1left, v1right); :}
-				| value:v1 CONS value:v2	/*list value*/
-					{: RESULT = new ListValue(v1, v2, v1left, v1right); :}
 ;
 
 
