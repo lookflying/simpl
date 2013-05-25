@@ -1,5 +1,6 @@
 package semantic;
 //import syntax.*;
+import syntax.Value;
 import type.*;
 public class Env {
 	Block currentBlock = null;
@@ -23,7 +24,7 @@ public class Env {
 		}
 		return null;
 	}
-	public Object lookUpValue(String id){
+	public Value lookUpValue(String id){
 		Block b = currentBlock;
 		while(b != null){
 			if (b.getValue(id) != null){
@@ -34,7 +35,7 @@ public class Env {
 		}
 		return null;
 	}
-	public void createEntry(String id, Type t, Object v){
+	public void createEntry(String id, Type t, Value v){
 		currentBlock.onion(id, t, v);
 	}
 //	public Object translate(Expression e){
