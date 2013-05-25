@@ -4,6 +4,12 @@ public class FunType extends Type {
 	Type srcType;
 	Type dstType;
 	
+	public FunType(Type srcType, Type dstType) {
+		super();
+		this.srcType = srcType;
+		this.dstType = dstType;
+	}
+
 	@Override
 	public boolean equals(Type other) {
 		if (other == null || (other instanceof FunType) == false) {
