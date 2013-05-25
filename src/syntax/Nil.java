@@ -4,7 +4,7 @@ import semantic.Env;
 import type.ListType;
 import type.Type;
 
-public class Nil extends Value{
+public class Nil extends ListValue{
 	public Nil(int l, int c) {
 		super(l, c);
 	}
@@ -19,6 +19,6 @@ public class Nil extends Value{
 
 	@Override
 	public Value execute(Env env) {
-		return ListValue.getNilInstance();
+		return this;
 	}
 }

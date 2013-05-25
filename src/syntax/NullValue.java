@@ -19,10 +19,4 @@ public class NullValue extends Value {
 		return this;
 	}
 
-	private static NullValue instance;
-
-	public static NullValue getInstance() {
-		return instance;
-	}
-
 }

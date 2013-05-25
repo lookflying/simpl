@@ -32,21 +32,15 @@ public class ListValue extends Value{
 	protected ListValue(int l, int c){
 		super(l, c);
 	}
-	
-	private static ListValue nilInstance;
-	
-	static {
-		nilInstance = new ListValue(-1, -1);
-		nilInstance.head = NullValue.getInstance();
-		nilInstance.tail = nilInstance;
-	}
-	
-	public static ListValue getNilInstance() {
-		return nilInstance;
-	}
 
 	public String toString(){
-		return "[" + head.toString() + ", " + tail.toString() + "]";
+		String str = "[";
+		ListValue  v = this;
+		while (v.tail instanceof Nil == false) {
+			str += v.head.toString() + " ";
+			v = (ListValue)v.tail;
+		}
+		return str + v.head.toString() + "]";
 	}
 
 	@Override
