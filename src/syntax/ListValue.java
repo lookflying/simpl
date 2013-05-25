@@ -12,7 +12,8 @@ public class ListValue extends Value{
 	
 	ListType type = null;
 	
-	public ListValue(Object v1, Object v2) {
+	public ListValue(Object v1, Object v2, int l, int c) {
+		super(l, c);
 		head = (Value)v1;
 		tail = (Value)v2;
 		Type headType = head == null ? NullType.getInstance() : head.getType();
@@ -28,22 +29,18 @@ public class ListValue extends Value{
 		}
 	}
 	
-	protected ListValue(){}
-	
-	private static ListValue nilInstance;
-	
-	static {
-		nilInstance = new ListValue();
-		nilInstance.head = NullValue.getInstance();
-		nilInstance.tail = nilInstance;
-	}
-	
-	public static ListValue getNilInstance() {
-		return nilInstance;
+	protected ListValue(int l, int c){
+		super(l, c);
 	}
 
 	public String toString(){
-		return "[" + head.toString() + ", " + tail.toString() + "]";
+		String str = "[";
+		ListValue  v = this;
+		while (v.tail instanceof Nil == false) {
+			str += v.head.toString() + " ";
+			v = (ListValue)v.tail;
+		}
+		return str + v.head.toString() + "]";
 	}
 
 	@Override

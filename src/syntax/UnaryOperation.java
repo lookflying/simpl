@@ -13,7 +13,8 @@ public class UnaryOperation extends Expression {
 	Expression e;
 	UnaryOperator op;
 
-	public UnaryOperation(Object u, Object e2) {
+	public UnaryOperation(Object u, Object e2, int l, int c) {
+		super(l, c);
 		op = (UnaryOperation.UnaryOperator) u;
 		e = (Expression) e2;
 	}
@@ -37,10 +38,10 @@ public class UnaryOperation extends Expression {
 		switch (op) {
 		case not:
 			v.check(BoolType.getInstance(), false);
-			return new BoolValue(!((BoolValue)v).value);
+			return new BoolValue(!((BoolValue)v).value, line, column);
 		case negative:
 			v.check(IntType.getInstance(), false);
-			return new IntValue(((IntValue)v).value * -1);
+			return new IntValue(((IntValue)v).value * -1, line, column);
 		default:
 			throw new UnexpectedException();
 		}

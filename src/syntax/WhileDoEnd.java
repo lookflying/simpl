@@ -7,7 +7,8 @@ public class WhileDoEnd extends Expression{
 	Expression condition;
 	Expression body;
 	
-	public WhileDoEnd(Object e1, Object e2) {
+	public WhileDoEnd(Object e1, Object e2, int l, int c) {
+		super(l, c);
 		condition = (Expression)e1;
 		body = (Expression)e2;
 	}

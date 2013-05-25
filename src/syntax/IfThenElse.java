@@ -8,7 +8,8 @@ public class IfThenElse extends Expression{
 	Expression thenClause;
 	Expression elseClause;
 	
-	public IfThenElse(Object e1, Object e2, Object e3) {
+	public IfThenElse(Object e1, Object e2, Object e3, int l, int c) {
+		super(l, c);
 		condition = (Expression)e1;
 		thenClause = (Expression)e2;
 		elseClause = (Expression)e3;

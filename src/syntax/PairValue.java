@@ -10,7 +10,8 @@ public class PairValue extends Value{
 	
 	private PairType type;
 	
-	public PairValue(Object v1, Object v2) {
+	public PairValue(Object v1, Object v2, int l, int c) {
+		super(l, c);
 		e1 = (Value)v1;
 		e2 = (Value)v2;
 		type = new PairType(e1.getType(), e2.getType());

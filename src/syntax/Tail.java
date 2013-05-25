@@ -7,7 +7,8 @@ import type.ListType;
 public class Tail extends Expression{
 	Expression e;	
 	
-	public Tail(Object e2) {
+	public Tail(Object e2, int l, int c) {
+		super(l, c);
 		e = (Expression)e2;
 	}
 

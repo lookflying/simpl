@@ -7,7 +7,8 @@ import type.ListType;
 public class Head extends Expression {
 	Expression e;
 
-	public Head(Object e2) {
+	public Head(Object e2, int l, int c) {
+		super(l, c);
 		e = (Expression) e2;
 	}
 

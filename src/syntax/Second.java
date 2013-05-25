@@ -7,7 +7,8 @@ import type.PairType;
 public class Second extends Expression{
 	Expression e;
 	
-	public Second(Object e2) {
+	public Second(Object e2, int l, int c) {
+		super(l, c);
 		e = (Expression)e2;
 	}
 

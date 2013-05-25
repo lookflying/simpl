@@ -8,7 +8,8 @@ public class Application extends Expression {
 	Expression func;
 	Expression param;
 
-	public Application(Object e1, Object e2) {
+	public Application(Object e1, Object e2, int l, int c) {
+		super(l, c);
 		func = (Expression) e1;
 		param = (Expression) e2;
 	}

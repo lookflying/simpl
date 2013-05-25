@@ -7,8 +7,9 @@ public class LetInEnd extends Expression{
 	Expression definition;
 	Expression body;
 	
-	public LetInEnd(String x2, Object e1, Object e2) {
-		x = new Variable(x2);
+	public LetInEnd(String x2, int xl, int xc, Object e1, Object e2, int l, int c) {
+		super(l, c);
+		x = new Variable(x2, xl, xc);
 		definition = (Expression)e1;
 		body = (Expression)e2;
 	}
