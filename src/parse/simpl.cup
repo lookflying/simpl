@@ -6,6 +6,15 @@ import syntax.*;
 parser code {:
 	public Expression result;
 
+	public  void syntax_error(Symbol cur_token){
+		/*left represents line, right represent column*/
+		ErrorMessage.report(cur_token.left, cur_token.right);	
+	}
+
+	public void unrecovered_syntax_error(Symbol cur_token){
+
+	}
+
 :}
 
 terminal String ID;

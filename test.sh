@@ -10,7 +10,6 @@ function run(){
 	if [ $rtval -eq 0 ]
 	then
 	echo "pass"
-		cat $tmp
 	else
 		cat $tmp
 	fi
