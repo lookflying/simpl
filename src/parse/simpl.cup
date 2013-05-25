@@ -16,7 +16,6 @@ terminal FUN, LET, IN, END, IF, THEN, ELSE, WHILE, DO, NIL, FST, SND, HEAD, TAIL
 
 non terminal expr, program;
 non terminal value;
-non terminal bop, uop;
 
 
 precedence left SEMICOLON;
@@ -62,8 +61,10 @@ expr ::= ID:x	/*variable*/
 					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.and, e2); :}
 				| expr:e1 OR expr:e2
 					{: RESULT = new BinaryOperation(e1, BinaryOperation.BinaryOperator.or, e2); :}
-				| uop:u expr:e	/*unary_operation*/
-					{: RESULT = new UnaryOperation(u, e); :}
+				| UMINUS expr:e	/*unary_operation*/
+					{: RESULT = new UnaryOperation(UnaryOperation.UnaryOperator.negative, e); :}
+				| NOT expr:e	/*unary_operation*/
+					{: RESULT = new UnaryOperation(UnaryOperation.UnaryOperator.not, e); :}
 				| LET ID:x EQ expr:e1 IN expr:e2 END	/*let_expr*/
 					{: RESULT = new LetInEnd(x, e1, e2); :}
 				| IF expr:e1 THEN expr:e2 ELSE expr:e3 END	/*conditional*/
@@ -85,6 +86,7 @@ expr ::= ID:x	/*variable*/
 				| LPAREN expr:e RPAREN	/*bracket_expr*/
 					{: RESULT = new Bracket(e); :}
 ;
+
 value ::= INT:i	/*integer*/
 					{: RESULT = new IntValue(i) ; :}
 				| BOOLEAN:b	/*boolean*/
@@ -102,8 +104,4 @@ value ::= INT:i	/*integer*/
 ;
 
 
-uop ::= UMINUS
-					{: RESULT = UnaryOperation.UnaryOperator.negative; :}
-				| NOT
-					{: RESULT = UnaryOperation.UnaryOperator.not; :}
-;		
+
