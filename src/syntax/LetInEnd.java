@@ -1,5 +1,7 @@
 package syntax;
 
+import semantic.Env;
+
 public class LetInEnd extends Expression{
 	Variable x;
 	Expression definition;
@@ -13,5 +15,15 @@ public class LetInEnd extends Expression{
 
 	public String toString(){
 		return "let " + x.toString() + " = " + definition.toString() + " in " + body.toString() + " end";
+	}
+
+	@Override
+	public Value execute(Env env) {
+		env.beginScope();
+		Value xval = definition.execute(env);
+		env.createEntry(x.name, xval.getType(), xval);
+		Value rval = body.execute(env);
+		env.endScope();
+		return rval;
 	}
 }

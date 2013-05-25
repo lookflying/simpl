@@ -38,6 +38,10 @@ public class Env {
 	public void createEntry(String id, Type t, Value v){
 		currentBlock.onion(id, t, v);
 	}
+	
+	public void onion(String id, Type t, Value v){
+		currentBlock.onion(id, t, v);
+	}
 //	public Object translate(Expression e){
 //		
 //		return null;

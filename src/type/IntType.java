@@ -9,7 +9,7 @@ public class IntType extends Type {
 
 	@Override
 	public boolean equals(Type other) {
-		return null != null && ((this == other) || other instanceof IntType);
+		return other != null && ((this == other) || other instanceof IntType);
 	}
 
 	@Override

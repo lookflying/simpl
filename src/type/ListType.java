@@ -3,6 +3,10 @@ package type;
 public class ListType extends Type {
 	Type elementType;
 
+	public Type getElementType() {
+		return elementType;
+	}
+
 	public ListType(Type elementType) {
 		super();
 		this.elementType = elementType;
@@ -25,6 +29,6 @@ public class ListType extends Type {
 
 	@Override
 	public String getName() {
-		return elementType.getName() + "list";
+		return elementType.getName() + " list";
 	}
 }

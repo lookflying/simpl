@@ -1,6 +1,7 @@
 package syntax;
 
 import semantic.Env;
+import semantic.TypeMismatchException;
 import type.ListType;
 import type.NullType;
 import type.Type;
@@ -13,9 +14,32 @@ public class ListValue extends Value{
 	
 	public ListValue(Object v1, Object v2) {
 		head = (Value)v1;
-		tail = (Value)v2;// TODO
+		tail = (Value)v2;
 		Type headType = head == null ? NullType.getInstance() : head.getType();
 		Type tailType = tail == null ? NullType.getInstance() : tail.getType();
+		type = new ListType(headType);
+		if (tailType instanceof ListType == false) {
+			throw new TypeMismatchException(type, tailType);
+		}
+		ListType listTailType = (ListType)tailType;
+		if (listTailType.getElementType().equals(NullType.getInstance()) == false
+				&& listTailType.getElementType().equals(headType) == false) {
+			throw new TypeMismatchException(type, tailType);
+		}
+	}
+	
+	protected ListValue(){}
+	
+	private static ListValue nilInstance;
+	
+	static {
+		nilInstance = new ListValue();
+		nilInstance.head = NullValue.getInstance();
+		nilInstance.tail = nilInstance;
+	}
+	
+	public static ListValue getNilInstance() {
+		return nilInstance;
 	}
 
 	public String toString(){

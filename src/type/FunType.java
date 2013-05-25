@@ -9,6 +9,12 @@ public class FunType extends Type {
 		this.srcType = srcType;
 		this.dstType = dstType;
 	}
+	
+	private static FunType instance = new FunType(NullType.getInstance(), NullType.getInstance());
+	
+	public static FunType getDummyInstance() {
+		return instance;
+	}
 
 	@Override
 	public boolean equals(Type other) {

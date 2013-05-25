@@ -1,6 +1,9 @@
 package syntax;
 
-public class List extends Expression{
+import semantic.Env;
+import type.NullType;
+
+public class List extends Expression {
 	Expression head;
 	Expression tail;	
 	
@@ -9,7 +12,14 @@ public class List extends Expression{
 		tail = (Expression)e2;
 	}
 
-	public String toString(){
+	public String toString() {
 		return "[" + head.toString() + ", " + tail.toString() + "]";
+	}
+
+	@Override
+	public Value execute(Env env) {
+		Value hvalue = head.execute(env);
+		Value tvalue = tail.execute(env);
+		return new ListValue(hvalue, tvalue);
 	}
 }
