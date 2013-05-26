@@ -15,9 +15,9 @@ public class SimpleExpressions {
 
 	@Test
 	public void testSimpleList() throws Exception {
-		runScript("nil$");
-		runScript("5::nil$");
-		runScript("9::4343::nil$");
+		runScript("nil$", "nil");
+		runScript("5::nil$", "[5]");
+		runScript("9::4343::nil$", "[9 4343]");
 		
 		runScript("head 8::nil$", 8);
 		runScript("head (1=2)::nil$", false);
@@ -25,9 +25,9 @@ public class SimpleExpressions {
 
 	@Test
 	public void testSimplePair() throws Exception {
-		runScript("(1 ,8)$");
-		runScript("(nil, 8::nil)$");
-		runScript("(8::98::988::nil, nil)$");
+		runScript("(1 ,8)$", "(1, 8)");
+		runScript("(nil, 8::nil)$", "(nil, [8])");
+		runScript("(8::98::988::nil, nil)$", "([8 98 988], nil)");
 	}
 	
 	@Test
