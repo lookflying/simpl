@@ -92,9 +92,9 @@ public class BinaryOperation extends Expression {
 			return new BoolValue(
 					((IntValue) left).value < ((IntValue) right).value, line,
 					column);
-		case equal:
-			left.check(IntType.getInstance(), false);
-			right.check(IntType.getInstance(), false);
+		case equal://only requires the same type
+			right.check(left.getType(), false);
+			//TODO only integer has been implemented
 			return new BoolValue(
 					((IntValue) left).value == ((IntValue) right).value, line,
 					column);
