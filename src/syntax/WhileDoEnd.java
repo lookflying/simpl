@@ -2,6 +2,7 @@ package syntax;
 
 import semantic.Env;
 import type.BoolType;
+import type.UnitType;
 
 public class WhileDoEnd extends Expression{
 	Expression condition;
@@ -17,15 +18,19 @@ public class WhileDoEnd extends Expression{
 		return "while " + condition.toString() + " do " + body.toString() + " end";
 	}
 
-	@Override
-	public Value execute(Env env) {
+	private boolean executeCondition(Env env){
 		Value condval = condition.execute(env);
 		condval.check(BoolType.getInstance(), false);
 		BoolValue bcondValue = (BoolValue)condval;
-		Value returnValue = condval;
-		while (bcondValue.value) {
-			returnValue = body.execute(env);
+		return bcondValue.value;
+	}
+	@Override
+	public Value execute(Env env) {
+		Value executeValue ;
+		while (executeCondition(env)) {
+			executeValue = body.execute(env);
+			executeValue.check(UnitType.getInstance(), false);
 		}
-		return returnValue;
+		return new UnitValue(line, column);
 	}
 }
