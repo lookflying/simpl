@@ -30,7 +30,7 @@ public class Application extends Expression {
 		env.beginScope(function.execBlock);
 		env.onion(function.getArg().name, paramvalue);
 		Value rval = function.getBody().execute(env);
-		env.endScope(function.execBlock);
+		env.endScope();
 		return rval;
 	}
 }

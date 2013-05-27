@@ -5,8 +5,10 @@ import syntax.Value;
 
 public class Env {
 	Block currentBlock = null;
+	int blockDupCount = 0;
 
 	public Env() {
+		blockDupCount = 0;
 		beginScope();
 	}
 
@@ -18,6 +20,8 @@ public class Env {
 		if (funBlock != currentBlock) {
 			funBlock.setFather(currentBlock);
 			currentBlock = funBlock;
+		} else {
+			blockDupCount++;
 		}
 	}
 
@@ -26,14 +30,18 @@ public class Env {
 	}
 
 	public void endScope() {
-		currentBlock = currentBlock.father;
-	}
-	
-	public void endScope(Block funBlock) {
-		if (funBlock != currentBlock.father) {
+		if (blockDupCount > 0) {
+			blockDupCount--;
+		} else {
 			currentBlock = currentBlock.father;
 		}
 	}
+
+//	public void endScope(Block funBlock) {
+//		if (funBlock != currentBlock.father) {
+//			currentBlock = currentBlock.father;
+//		}
+//	}
 
 	public Value lookUpValue(String id) {
 		Block b = currentBlock;
