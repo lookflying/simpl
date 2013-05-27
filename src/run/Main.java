@@ -15,8 +15,6 @@ public class Main {
 		boolean ok = false;
 		if (args.length > 0) {
 			String filename = args[0];
-
-			// ErrorMessage.setDebug(true);
 			try {
 				parser p = new parser(new Lexer(new FileReader(filename)));
 				
