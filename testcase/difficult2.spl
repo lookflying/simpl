@@ -1,0 +1,6 @@
+let
+	f = fun x->fun y->fun z->((fst z y) x)
+in
+	(((f 5 ) 10 )(fun x->fun y-> x - y, fun y->fun x->x * y))
+end
+$

@@ -1,0 +1,6 @@
+let
+	f = fun x->fun y->fun z->5 + (fun z -> x + y + z 4) + x + y
+in
+	(((f 1) 2) 3)
+end
+$
