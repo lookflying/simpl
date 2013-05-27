@@ -1,5 +1,6 @@
 package syntax;
 
+import semantic.Block;
 import semantic.Env;
 import semantic.UnexpectedException;
 import type.FunType;
@@ -9,13 +10,14 @@ import type.Type;
 public class AnonymousFunction extends Value {
 	Variable arg;
 	Expression body;
+	Block execBlock;
 
 	public AnonymousFunction(String x, int xl, int xc, Object e, int l, int c) {
 		super(l, c);
 		arg = new Variable(x, xl, xc);
 		body = (Expression) e;
-		// TODO
 		type = new FunType(NullType.getInstance(), NullType.getInstance());
+		execBlock = new Block();
 	}
 
 	public Variable getArg() {
@@ -39,6 +41,8 @@ public class AnonymousFunction extends Value {
 
 	@Override
 	public Value execute(Env env) {
+		report();
+		execBlock = env.getCurrentBlock();
 		return this;
 	}
 

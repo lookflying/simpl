@@ -26,6 +26,7 @@ public class WhileDoEnd extends Expression{
 	}
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value executeValue ;
 		while (executeCondition(env)) {
 			executeValue = body.execute(env);

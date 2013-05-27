@@ -21,6 +21,7 @@ public class IfThenElse extends Expression{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value condvalue = condition.execute(env);
 		condvalue.check(BoolType.getInstance(), false);
 		if (((BoolValue)condvalue).value) {

@@ -38,6 +38,7 @@ public class BoolValue extends Value {
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		return this;
 	}
 

@@ -1,26 +1,35 @@
 package semantic;
 
 import syntax.Value;
-import type.*;
 
 public class Block {
-	public Block father;
-	Map<Type> typeMap;
+	Block father;
 	Map<Value> memory;
-	public Block(Block f){
-		father = f;
-		typeMap = new Map<Type>();
+
+	public Block() {
+		father = null;
 		memory = new Map<Value>();
 	}
-	public Type getType(String id){
-		return typeMap.query(id);
+
+	public void setFather(Block f) {
+		father = f;
 	}
-	public Value getValue(String id){
+
+	public Block getFather() {
+		return father;
+	}
+
+	public Block(Block f) {
+		father = f;
+		memory = new Map<Value>();
+	}
+
+	public Value getValue(String id) {
 		return memory.query(id);
 	}
-	public void onion(String id, Type t, Value v){
-		typeMap.onion(id, t);
+
+	public void onion(String id, Value v) {
 		memory.onion(id, v);
 	}
-	
+
 }

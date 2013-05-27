@@ -18,6 +18,7 @@ public class Second extends Expression{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value v = e.execute(env);
 		if (v.getType() instanceof PairType == false) {
 			throw new TypeMismatchException(PairType.getDummyInstance(), v.getType());

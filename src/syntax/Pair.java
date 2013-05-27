@@ -18,6 +18,7 @@ public class Pair extends Expression{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value v1 = e1.execute(env);
 		Value v2 = e2.execute(env);
 		return new PairValue(v1, v2, line, column);

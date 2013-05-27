@@ -57,6 +57,7 @@ public class BinaryOperation extends Expression {
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value left = e1.execute(env);
 		Value right = e2.execute(env);
 		switch (this.op) {

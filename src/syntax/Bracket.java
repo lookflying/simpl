@@ -16,6 +16,7 @@ public class Bracket extends Expression{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		return e.execute(env);
 	}
 	

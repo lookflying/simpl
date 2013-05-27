@@ -16,6 +16,7 @@ public class Variable extends Expression{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		return env.lookUpValue(name);
 	}
 }

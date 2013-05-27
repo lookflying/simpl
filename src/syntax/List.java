@@ -1,16 +1,15 @@
 package syntax;
 
 import semantic.Env;
-import type.NullType;
 
 public class List extends Expression {
 	Expression head;
-	Expression tail;	
-	
+	Expression tail;
+
 	public List(Object e1, Object e2, int l, int c) {
 		super(l, c);
-		head = (Expression)e1;
-		tail = (Expression)e2;
+		head = (Expression) e1;
+		tail = (Expression) e2;
 	}
 
 	public String toString() {
@@ -19,6 +18,7 @@ public class List extends Expression {
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value hvalue = head.execute(env);
 		Value tvalue = tail.execute(env);
 		return new ListValue(hvalue, tvalue, line, column);

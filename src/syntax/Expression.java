@@ -1,6 +1,7 @@
 package syntax;
 
 import semantic.Env;
+import run.ErrorMessage;
 
 public abstract class Expression {
 	int line;
@@ -9,6 +10,9 @@ public abstract class Expression {
 	public Expression(int l, int c) {
 		line = l;
 		column = c;
+	}
+	public void report(){
+		ErrorMessage.report(line, column);
 	}
 
 	abstract public Value execute(Env env);

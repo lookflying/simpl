@@ -50,6 +50,7 @@ public class ListValue extends Value{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		return this;
 	}
 

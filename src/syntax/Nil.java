@@ -19,6 +19,7 @@ public class Nil extends ListValue{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		return this;
 	}
 	

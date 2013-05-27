@@ -36,6 +36,7 @@ public class IntValue extends Value{
 			return String.valueOf(value);
 	}
 	public Value execute(Env env) {
+		report();
 		return this;
 	}
 
