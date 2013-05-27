@@ -12,13 +12,8 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 
 import parse.Lexer;
-import parse.SyntaxException;
 import parse.parser;
 import semantic.Env;
-import semantic.TypeMismatchException;
-import semantic.UnexpectedException;
-import semantic.ValueUndefinedException;
-import semantic.VariableUndefinedException;
 
 public class SimPL {
 
@@ -107,19 +102,7 @@ public class SimPL {
 			Env env = new Env();
 			System.out.println(p.result.execute(env));
 			retval = 0;
-		} catch (SyntaxException e) {
-			System.out.println(e.getMessage());
-			System.out.println(ErrorMessage.pos());
-		} catch (TypeMismatchException e) {
-			System.out.println(e.getMessage());
-			System.out.println(ErrorMessage.pos());
-		}catch (UnexpectedException e) {
-			System.out.println(e.getMessage());
-			System.out.println(ErrorMessage.pos());
-		}catch (ValueUndefinedException e) {
-			System.out.println(e.getMessage());
-			System.out.println(ErrorMessage.pos());
-		}catch (VariableUndefinedException e) {
+		} catch (SimplException e) {
 			System.out.println(e.getMessage());
 			System.out.println(ErrorMessage.pos());
 		} catch (Exception e) {
