@@ -52,6 +52,8 @@ public class BinaryAndUnaryExpressions {
 		
 		runScript("(nil, 7::nil) = (nil, 7::nil)$", true);
 		runScript("(7::nil, 1::2::3::nil) = (nil, (1, (2, 3)))$", false);
+		runScript("((1, 2)::nil) = (1::nil)$", false);
+		runScript("((1, 2)::nil) = ((1, 2)::nil)$", true);
 	}
 }
 
