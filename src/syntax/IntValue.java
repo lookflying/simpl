@@ -20,6 +20,13 @@ public class IntValue extends Value{
 	public IntValue(Integer i, int l, int c) {
 		super(l, c);
 		value = i;
+		isUndef = false;
+	}
+	
+	public IntValue(int l, int c){
+		super(l, c);
+		isUndef = true;
+		value = 0;
 	}
 
 	public String toString(){

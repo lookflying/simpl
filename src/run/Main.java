@@ -26,11 +26,18 @@ public class Main {
 				System.out.println(String.format("No such file: %s.", filename));
 				ok = false;
 				System.out.println(ErrorMessage.pos());
-			} catch (Exception e) {
+			} catch (SyntaxError e) {
 				ok = false;
 				System.out.println(e.getMessage());
 				System.out.println(ErrorMessage.pos());
-			}finally{
+				e.printStackTrace();
+			}catch (RuntimeException e){
+				System.out.println(e.getMessage());
+				System.out.println(ErrorMessage.pos());
+			}catch (Exception e){
+				e.printStackTrace();
+			}
+			finally{
 				System.exit(ok?0:1);
 			}
 		}

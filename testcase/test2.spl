@@ -2,10 +2,13 @@ let
 	mod = fun x -> fun y -> x - x / y * y
 in
 	let
-		gc = fun x -> fun y ->
-			if ((mod x) y) = 0
-			then y
-			else ((gcd y), ((mod x) y))
+		gcd = fun x -> fun y ->
+			if
+				((mod x) y) = 0
+			then
+				y
+			else
+				((gcd y) ((mod x) y))
 			end
 	in
 		((gcd 34986) 3087)	

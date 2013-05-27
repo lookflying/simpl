@@ -61,51 +61,89 @@ public class BinaryOperation extends Expression {
 		Value right = e2.execute(env);
 		switch (this.op) {
 		case plus:
-			left.check(IntType.getInstance(), false);
-			right.check(IntType.getInstance(), false);
-			return new IntValue(((IntValue) left).value
-					+ ((IntValue) right).value, line, column);
+			left.check(IntType.getInstance(), true);
+			right.check(IntType.getInstance(), true);
+			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
+				return new IntValue(line, column);
+			} else {
+				return new IntValue(((IntValue) left).value
+						+ ((IntValue) right).value, line, column);
+			}
 		case minus:
-			left.check(IntType.getInstance(), false);
-			right.check(IntType.getInstance(), false);
-			return new IntValue(((IntValue) left).value
-					- ((IntValue) right).value, line, column);
+			left.check(IntType.getInstance(), true);
+			right.check(IntType.getInstance(), true);
+			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
+				return new IntValue(line, column);
+			} else {
+				return new IntValue(((IntValue) left).value
+						- ((IntValue) right).value, line, column);
+			}
 		case times:
-			left.check(IntType.getInstance(), false);
-			right.check(IntType.getInstance(), false);
-			return new IntValue(((IntValue) left).value
-					* ((IntValue) right).value, line, column);
+			left.check(IntType.getInstance(), true);
+			right.check(IntType.getInstance(), true);
+			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
+				return new IntValue(line, column);
+			} else {
+				return new IntValue(((IntValue) left).value
+						* ((IntValue) right).value, line, column);
+			}
 		case devide:
-			left.check(IntType.getInstance(), false);
-			right.check(IntType.getInstance(), false);
-			return new IntValue(((IntValue) left).value
-					/ ((IntValue) right).value, line, column);
+			left.check(IntType.getInstance(), true);
+			right.check(IntType.getInstance(), true);
+			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
+				return new IntValue(line, column);
+			} else if (((IntValue) right).value == 0) {
+				return new IntValue(line, column);
+			} else {
+				return new IntValue(((IntValue) left).value
+						/ ((IntValue) right).value, line, column);
+			}
 		case biggerThan:
-			left.check(IntType.getInstance(), false);
-			right.check(IntType.getInstance(), false);
-			return new BoolValue(
-					((IntValue) left).value > ((IntValue) right).value, line,
-					column);
+			left.check(IntType.getInstance(), true);
+			right.check(IntType.getInstance(), true);
+			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
+				return new BoolValue(line, column);
+			} else {
+				return new BoolValue(
+						((IntValue) left).value > ((IntValue) right).value,
+						line, column);
+			}
 		case lessThan:
-			left.check(IntType.getInstance(), false);
-			right.check(IntType.getInstance(), false);
-			return new BoolValue(
-					((IntValue) left).value < ((IntValue) right).value, line,
-					column);
+			left.check(IntType.getInstance(), true);
+			right.check(IntType.getInstance(), true);
+			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
+				return new BoolValue(line, column);
+			} else {
+				return new BoolValue(
+						((IntValue) left).value < ((IntValue) right).value,
+						line, column);
+			}
 		case equal:
-			return new BoolValue(left.equals(right), left.line, left.column);
+			if (left instanceof IntValue && right instanceof IntValue) {
+				if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
+					return new BoolValue(line, column);
+				}
+			}
+			return new BoolValue(left.equals(right), line, column);
 		case and:
-			left.check(BoolType.getInstance(), false);
-			right.check(BoolType.getInstance(), false);
-			return new BoolValue(((BoolValue) left).value
-					&& ((BoolValue) right).value, line, column);
+			left.check(BoolType.getInstance(), true);
+			right.check(BoolType.getInstance(), true);
+			if (((BoolValue) left).isUndef() || ((BoolValue) left).isUndef()) {
+				return new BoolValue(line, column);
+			} else {
+				return new BoolValue(((BoolValue) left).value
+						&& ((BoolValue) right).value, line, column);
+			}
 		case or:
-			left.check(BoolType.getInstance(), false);
-			right.check(BoolType.getInstance(), false);
-			return new BoolValue(((BoolValue) left).value
-					|| ((BoolValue) right).value, line, column);
+			left.check(BoolType.getInstance(), true);
+			right.check(BoolType.getInstance(), true);
+			if (((BoolValue) left).isUndef() || ((BoolValue) left).isUndef()) {
+				return new BoolValue(line, column);
+			} else {
+				return new BoolValue(((BoolValue) left).value
+						|| ((BoolValue) right).value, line, column);
+			}
 		}
 		throw new UnexpectedException();
 	}
-
 }
