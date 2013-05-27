@@ -28,6 +28,12 @@ public class Env {
 	public void endScope() {
 		currentBlock = currentBlock.father;
 	}
+	
+	public void endScope(Block funBlock) {
+		if (funBlock != currentBlock.father) {
+			currentBlock = currentBlock.father;
+		}
+	}
 
 	public Value lookUpValue(String id) {
 		Block b = currentBlock;
