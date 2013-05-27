@@ -19,4 +19,9 @@ public class NullValue extends Value {
 		return this;
 	}
 
+	@Override
+	public boolean equals(Value other) {
+		return other instanceof NullValue;
+	}
+
 }

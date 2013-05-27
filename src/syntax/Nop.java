@@ -22,4 +22,9 @@ public class Nop extends Value {
 	public Value execute(Env env) {
 		return this;
 	}
+
+	@Override
+	public boolean equals(Value other) {
+		return other instanceof Nop;
+	}
 }

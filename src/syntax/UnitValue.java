@@ -26,4 +26,9 @@ public class UnitValue extends Value {
 		return instance;
 	}
 
+	@Override
+	public boolean equals(Value other) {
+		return other instanceof UnitValue;
+	}
+
 }

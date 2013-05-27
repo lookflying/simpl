@@ -33,4 +33,44 @@ public class BinaryAndUnaryExpressions {
 		runScript("9*8/9-9>  (8+9*7)$", false);
 		runScript("(1*4=5) or 4<9$", true);
 	}
+	
+	@Test
+	public void testEqual() throws Exception {
+		runScript("nil = nil$", true);
+
+		runScript("(9, 8) = (9, 8)$", true);
+		runScript("(9, 8) = (8, 9)$", false);
+		runScript("((8, 0), 23) = ((1+7, 1-1), 23)$", true);
+		runScript("(1, (2, (3, 4))) = (1, (2, (3, 4)))$", true);
+		runScript("(1, (2, (3, 4))) = (1, (2, (7=7, 4)))$", false);
+		
+		runScript("(5::nil) = nil$", false);
+		runScript("nil = (5::nil)$", false);
+		runScript("(5::nil) = (5::nil)$", true);
+		runScript("(4::9::nil) = (4::nil)$", false);
+		runScript("(9::nil) = (9::4::nil)$", false);
+		
+		runScript("(nil, 7::nil) = (nil, 7::nil)$", true);
+		runScript("(7::nil, 1::2::3::nil) = (nil, (1, (2, 3)))$", false);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

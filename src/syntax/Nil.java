@@ -21,4 +21,9 @@ public class Nil extends ListValue{
 	public Value execute(Env env) {
 		return this;
 	}
+	
+	@Override
+	public boolean equals(Value other) {
+		return other instanceof Nil;
+	}
 }

@@ -30,4 +30,14 @@ public class PairValue extends Value{
 	public Value execute(Env env) {
 		return this;
 	}
+
+	@Override
+	public boolean equals(Value other) {
+		if (other instanceof PairValue == false) {
+			return false;
+		}
+		PairValue pv = (PairValue)other;
+		
+		return e1.equals(pv.e1) && e2.equals(pv.e2);
+	}
 }

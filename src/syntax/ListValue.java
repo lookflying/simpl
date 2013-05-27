@@ -52,4 +52,14 @@ public class ListValue extends Value{
 	public Value execute(Env env) {
 		return this;
 	}
+
+	@Override
+	public boolean equals(Value other) {
+		if (other instanceof ListValue == false) {
+			return false;
+		}
+		ListValue lv = (ListValue)other;
+		
+		return head.equals(lv.head) && tail.equals(lv.tail);
+	}
 }

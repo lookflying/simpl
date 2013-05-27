@@ -1,6 +1,7 @@
 package syntax;
 
 import semantic.Env;
+import semantic.UnexpectedException;
 import type.FunType;
 import type.NullType;
 import type.Type;
@@ -39,5 +40,13 @@ public class AnonymousFunction extends Value {
 	@Override
 	public Value execute(Env env) {
 		return this;
+	}
+
+	@Override
+	public boolean equals(Value other) {
+		if (this == other) {
+			return true;
+		}
+		throw new UnexpectedException("cannot compare two AnonymousFunction values");
 	}
 }

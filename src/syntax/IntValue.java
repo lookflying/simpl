@@ -1,7 +1,6 @@
 package syntax;
 
 import semantic.Env;
-import semantic.TypeMismatchException;
 import semantic.ValueUndefinedException;
 import type.IntType;
 import type.Type;
@@ -44,5 +43,14 @@ public class IntValue extends Value{
 		if (canUndef == false && isUndef == true) {
 			throw new ValueUndefinedException();
 		}
+	}
+
+	@Override
+	public boolean equals(Value other) {
+		if (other instanceof IntValue == false) {
+			return false;
+		}
+		IntValue iv = (IntValue)other;
+		return this.isUndef == iv.isUndef && (isUndef == true || this.value == iv.value);
 	}
 }

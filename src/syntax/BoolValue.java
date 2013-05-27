@@ -32,4 +32,13 @@ public class BoolValue extends Value {
 	public boolean getValue() {
 		return value;
 	}
+
+	@Override
+	public boolean equals(Value other) {
+		if (other instanceof BoolValue == false) {
+			return false;
+		}
+		BoolValue bv = (BoolValue)other;
+		return this.value == bv.value;
+	}
 }
