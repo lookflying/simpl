@@ -18,6 +18,7 @@ public class Tail extends Expression{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value v = e.execute(env);
 		if (v.getType() instanceof ListType == false) {
 			throw new TypeMismatchException(ListType.getDummyInstance(), v.getType());

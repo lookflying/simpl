@@ -34,6 +34,7 @@ public class UnaryOperation extends Expression {
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		Value v = e.execute(env);
 		switch (op) {
 		case not:

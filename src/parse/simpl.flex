@@ -10,7 +10,6 @@ import run.ErrorMessage;
 %column
 %public
 
-%scanerror SyntaxError
 
 %{
 	private void report(String text){
@@ -28,8 +27,8 @@ import run.ErrorMessage;
 		return new Symbol(type, yyline, yycolumn, value);
 	}
 
-	private void error(String msg) throws SyntaxError{
-		throw new SyntaxError(msg);
+	private void error(String msg){
+		throw new SyntaxException(msg);
 	}
 %}
 

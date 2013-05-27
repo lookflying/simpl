@@ -18,6 +18,7 @@ public class Sequence extends Expression{
 
 	@Override
 	public Value execute(Env env) {
+		report();
 		e1.execute(env);
 		Value v = e2.execute(env);
 		return v;

@@ -1,6 +1,5 @@
 package semantic;
 import java.util.HashMap;
-import type.*;
 
 public class Map<T> {
 	HashMap<String, T> map;
