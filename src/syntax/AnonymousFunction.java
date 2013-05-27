@@ -42,7 +42,7 @@ public class AnonymousFunction extends Value {
 	@Override
 	public Value execute(Env env) {
 		report();
-		execBlock = env.getCurrentBlock();
+		execBlock = env.getCurrentBlock().clone();
 		return this;
 	}
 

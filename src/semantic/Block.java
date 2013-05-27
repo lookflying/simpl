@@ -1,8 +1,10 @@
 package semantic;
 
+import java.util.HashMap;
+
 import syntax.Value;
 
-public class Block {
+public class Block implements Cloneable{
 	Block father;
 	Map<Value> memory;
 
@@ -30,6 +32,16 @@ public class Block {
 
 	public void onion(String id, Value v) {
 		memory.onion(id, v);
+	}
+	
+	public String toString(){
+		return memory.map.toString();
+	}
+	
+	public Block clone(){
+		Block nb = new Block();
+		nb.memory.map = (HashMap<String, Value>) this.memory.map.clone();
+		return nb;
 	}
 
 }
