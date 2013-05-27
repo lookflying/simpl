@@ -1,5 +1,6 @@
 package parse;
 import java_cup.runtime.*;
+import run.ErrorMessage;
 %%
 
 %class Lexer
