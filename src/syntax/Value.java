@@ -12,7 +12,7 @@ public abstract class Value extends Expression{
 	
 	public abstract boolean equals(Value other);
 	
-	public void check(Type type, boolean canUndef) {
+	public void check(Type type) {
 		if (type != null && getType().equals(type) == false) {
 			throw new TypeMismatchException(type, this.getType());
 		}

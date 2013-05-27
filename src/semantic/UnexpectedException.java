@@ -1,6 +1,8 @@
 package semantic;
 
-public class UnexpectedException extends RuntimeException {
+import run.SimplException;
+
+public class UnexpectedException extends SimplException {
 
 	/**
 	 * 
@@ -12,6 +14,6 @@ public class UnexpectedException extends RuntimeException {
 	}
 	
 	public UnexpectedException() {
-		
+		super("");
 	}
 }

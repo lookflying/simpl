@@ -1,6 +1,8 @@
 package semantic;
 
-public class VariableUndefinedException extends RuntimeException {
+import run.SimplException;
+
+public class VariableUndefinedException extends SimplException {
 
 	/**
 	 * 

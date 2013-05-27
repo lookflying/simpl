@@ -1,14 +1,14 @@
 package parse;
 
-public class SyntaxException extends RuntimeException {
+import run.SimplException;
+
+public class SyntaxException extends SimplException {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public SyntaxException(){
-		super();
-	}
-	public SyntaxException(String msg){
-		super(msg);
+
+	public SyntaxException(String msg) {
+		super("Syntax error: " + msg);
 	}
 }

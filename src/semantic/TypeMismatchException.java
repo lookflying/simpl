@@ -1,8 +1,9 @@
 package semantic;
 
+import run.SimplException;
 import type.Type;
 
-public class TypeMismatchException extends RuntimeException {
+public class TypeMismatchException extends SimplException {
 
 	/**
 	 * 
@@ -15,6 +16,6 @@ public class TypeMismatchException extends RuntimeException {
 	 * @param got
 	 */
 	public TypeMismatchException(Type expected, Type got) {
-		super("expected " + expected.getName() + ", got " + got.getName());
+		super("Type mismatch: expected " + expected.getName() + ", got " + got.getName());
 	}
 }

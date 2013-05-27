@@ -1,20 +1,27 @@
 package parse;
 import java_cup.runtime.*;
 import syntax.*;
+import run.ErrorMessage;
 
 
 parser code {:
 	public Expression result;
-/*
+
 	public  void syntax_error(Symbol cur_token){
 		//left represents line, right represent column
 		ErrorMessage.report(cur_token.left, cur_token.right);	
+		report_error("", null);
 	}
-
+	public void report_error(String message, Object info){
+		throw new SyntaxException(message);
+	}
+	public void report_fatal_error(String message, Object info){
+		throw new SyntaxException(message);
+	}
 	public void unrecovered_syntax_error(Symbol cur_token){
-
+		report_fatal_error("fatal", null);
 	}
-*/
+
 :}
 
 terminal String ID;

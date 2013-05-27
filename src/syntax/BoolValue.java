@@ -47,13 +47,6 @@ public class BoolValue extends Value {
 		return BoolType.getInstance();
 	}
 	
-	@Override
-	public void check(Type type, boolean canUndef) {
-		super.check(type, canUndef);
-		if (canUndef == false && isUndef == true) {
-			throw new ValueUndefinedException();
-		}
-	}
 
 	public boolean getValue() {
 		return value;

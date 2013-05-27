@@ -62,8 +62,8 @@ public class BinaryOperation extends Expression {
 		Value right = e2.execute(env);
 		switch (this.op) {
 		case plus:
-			left.check(IntType.getInstance(), true);
-			right.check(IntType.getInstance(), true);
+			left.check(IntType.getInstance());
+			right.check(IntType.getInstance());
 			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
 				return new IntValue(line, column);
 			} else {
@@ -71,8 +71,8 @@ public class BinaryOperation extends Expression {
 						+ ((IntValue) right).value, line, column);
 			}
 		case minus:
-			left.check(IntType.getInstance(), true);
-			right.check(IntType.getInstance(), true);
+			left.check(IntType.getInstance());
+			right.check(IntType.getInstance());
 			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
 				return new IntValue(line, column);
 			} else {
@@ -80,8 +80,8 @@ public class BinaryOperation extends Expression {
 						- ((IntValue) right).value, line, column);
 			}
 		case times:
-			left.check(IntType.getInstance(), true);
-			right.check(IntType.getInstance(), true);
+			left.check(IntType.getInstance());
+			right.check(IntType.getInstance());
 			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
 				return new IntValue(line, column);
 			} else {
@@ -89,8 +89,8 @@ public class BinaryOperation extends Expression {
 						* ((IntValue) right).value, line, column);
 			}
 		case devide:
-			left.check(IntType.getInstance(), true);
-			right.check(IntType.getInstance(), true);
+			left.check(IntType.getInstance());
+			right.check(IntType.getInstance());
 			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
 				return new IntValue(line, column);
 			} else if (((IntValue) right).value == 0) {
@@ -100,8 +100,8 @@ public class BinaryOperation extends Expression {
 						/ ((IntValue) right).value, line, column);
 			}
 		case biggerThan:
-			left.check(IntType.getInstance(), true);
-			right.check(IntType.getInstance(), true);
+			left.check(IntType.getInstance());
+			right.check(IntType.getInstance());
 			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
 				return new BoolValue(line, column);
 			} else {
@@ -110,8 +110,8 @@ public class BinaryOperation extends Expression {
 						line, column);
 			}
 		case lessThan:
-			left.check(IntType.getInstance(), true);
-			right.check(IntType.getInstance(), true);
+			left.check(IntType.getInstance());
+			right.check(IntType.getInstance());
 			if (((IntValue) left).isUndef() || ((IntValue) right).isUndef()) {
 				return new BoolValue(line, column);
 			} else {
@@ -127,8 +127,8 @@ public class BinaryOperation extends Expression {
 			}
 			return new BoolValue(left.equals(right), line, column);
 		case and:
-			left.check(BoolType.getInstance(), true);
-			right.check(BoolType.getInstance(), true);
+			left.check(BoolType.getInstance());
+			right.check(BoolType.getInstance());
 			if (((BoolValue) left).isUndef() || ((BoolValue) left).isUndef()) {
 				return new BoolValue(line, column);
 			} else {
@@ -136,8 +136,8 @@ public class BinaryOperation extends Expression {
 						&& ((BoolValue) right).value, line, column);
 			}
 		case or:
-			left.check(BoolType.getInstance(), true);
-			right.check(BoolType.getInstance(), true);
+			left.check(BoolType.getInstance());
+			right.check(BoolType.getInstance());
 			if (((BoolValue) left).isUndef() || ((BoolValue) left).isUndef()) {
 				return new BoolValue(line, column);
 			} else {

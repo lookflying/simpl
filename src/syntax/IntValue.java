@@ -45,13 +45,7 @@ public class IntValue extends Value{
 		return IntType.getInstance();
 	}
 	
-	@Override
-	public void check(Type type, boolean canUndef) {
-		super.check(type, canUndef);
-		if (canUndef == false && isUndef == true) {
-			throw new ValueUndefinedException();
-		}
-	}
+
 
 	@Override
 	public boolean equals(Value other) {

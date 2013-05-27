@@ -38,11 +38,19 @@ public class UnaryOperation extends Expression {
 		Value v = e.execute(env);
 		switch (op) {
 		case not:
-			v.check(BoolType.getInstance(), false);
-			return new BoolValue(!((BoolValue)v).value, line, column);
+			v.check(BoolType.getInstance());
+			if (((BoolValue) v).isUndef()) {
+				return new BoolValue(line, column);
+			} else {
+				return new BoolValue(!((BoolValue) v).value, line, column);
+			}
 		case negative:
-			v.check(IntType.getInstance(), false);
-			return new IntValue(((IntValue)v).value * -1, line, column);
+			v.check(IntType.getInstance());
+			if (((IntValue) v).isUndef()) {
+				return new IntValue(line, column);
+			} else {
+				return new IntValue(((IntValue) v).value * -1, line, column);
+			}
 		default:
 			throw new UnexpectedException();
 		}

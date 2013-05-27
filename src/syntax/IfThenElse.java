@@ -23,7 +23,7 @@ public class IfThenElse extends Expression{
 	public Value execute(Env env) {
 		report();
 		Value condvalue = condition.execute(env);
-		condvalue.check(BoolType.getInstance(), false);
+		condvalue.check(BoolType.getInstance());
 		if (((BoolValue)condvalue).value) {
 			return thenClause.execute(env);
 		} else {

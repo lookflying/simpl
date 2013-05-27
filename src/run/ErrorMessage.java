@@ -36,7 +36,7 @@ public class ErrorMessage {
 	}
 
 	public static String pos() {
-		return String.format("Line: %d, Column: %d", currentLine,
+		return String.format("at line: %d, column: %d", currentLine,
 				currentColumn);
 	}
 

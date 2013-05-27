@@ -20,7 +20,7 @@ public class WhileDoEnd extends Expression{
 
 	private boolean executeCondition(Env env){
 		Value condval = condition.execute(env);
-		condval.check(BoolType.getInstance(), false);
+		condval.check(BoolType.getInstance());
 		BoolValue bcondValue = (BoolValue)condval;
 		return bcondValue.value;
 	}
@@ -30,7 +30,7 @@ public class WhileDoEnd extends Expression{
 		Value executeValue ;
 		while (executeCondition(env)) {
 			executeValue = body.execute(env);
-			executeValue.check(UnitType.getInstance(), false);
+			executeValue.check(UnitType.getInstance());
 		}
 		return new UnitValue(line, column);
 	}
