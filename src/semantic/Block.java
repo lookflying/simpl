@@ -35,12 +35,12 @@ public class Block implements Cloneable{
 	}
 	
 	public String toString(){
-		return memory.map.toString();
+		return memory.toString();
 	}
 	
 	public Block clone(){
 		Block nb = new Block();
-		nb.memory.map = (HashMap<String, Value>) this.memory.map.clone();
+		nb.memory = (Map<Value>) this.memory.clone();
 		return nb;
 	}
 

@@ -14,6 +14,6 @@ public class UnexpectedException extends SimplException {
 	}
 	
 	public UnexpectedException() {
-		super("");
+		super("Unexcepted exception");
 	}
 }

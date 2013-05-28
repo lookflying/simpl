@@ -1,7 +1,6 @@
 package syntax;
 
 import semantic.Env;
-import semantic.ValueUndefinedException;
 import type.BoolType;
 import type.Type;
 

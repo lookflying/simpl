@@ -16,6 +16,6 @@ public class TypeMismatchException extends SimplException {
 	 * @param got
 	 */
 	public TypeMismatchException(Type expected, Type got) {
-		super("Type mismatch: expected " + expected.getName() + ", got " + got.getName());
+		super("Type Error: type mismatch: expected " + expected.getName() + ", got " + got.getName());
 	}
 }
