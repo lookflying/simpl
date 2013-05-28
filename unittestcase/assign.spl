@@ -1,6 +1,7 @@
 let 
-	x = 4
+	x = 5
 in
+	x := 20;
 	x
 end
 $

@@ -20,12 +20,14 @@ public class Assignment extends Expression{
 	@Override
 	public Value execute(Env env) {
 		report();
-		Value rightval = val.execute(env);
 		if (var instanceof Variable == false) {
-			// TODO
 			throw new UnexpectedException();
-		}
-		env.onion(((Variable)var).name, rightval);
-		return UnitValue.getInstance();
+		}else{
+			Value varx = env.lookUpValue(((Variable)var).name);
+			Value rightval = val.execute(env);
+			rightval.check(varx.getType());
+			env.onion(((Variable)var).name, rightval);
+			return UnitValue.getInstance();
+		}		
 	}
 }
