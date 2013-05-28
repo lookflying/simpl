@@ -3,10 +3,10 @@ package run;
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -84,7 +84,7 @@ public class SimPL {
 	 */
 	public static void run(String infile, String outfile, boolean printPrompt) {
 		Scanner in = null;
-		PrintWriter out = null;
+		PrintStream out = null;
 		Scanner pipereader = null;
 		PrintWriter pipeWriter = null;
 		try {
@@ -97,9 +97,9 @@ public class SimPL {
 			
 			// create output printer
 			if (outfile == null || outfile.isEmpty()) {
-				out = new PrintWriter(System.out);
+				out = System.out;
 			} else {
-				out = new PrintWriter(new FileOutputStream(outfile));
+				out = new PrintStream(outfile);
 			}
 			
 			// construct a pipe
@@ -243,7 +243,7 @@ public class SimPL {
 	 * @param script script string, should end with $
 	 * @return 0 if succeeded otherwise 1
 	 */
-	public static int runScript(String script, PrintWriter out) {
+	public static int runScript(String script, PrintStream out) {
 		int retval = 1;
 		try {
 			parser p = new parser(new Lexer(new ByteArrayInputStream(script.getBytes())));
