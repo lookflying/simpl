@@ -63,4 +63,9 @@ public class ListValue extends Value{
 		
 		return head.equals(lv.head) && tail.equals(lv.tail);
 	}
+	public void check(Type type) {
+		if (type != ListType.getDummyInstance()) {
+			super.check(type);
+		}
+	}
 }

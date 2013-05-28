@@ -1,6 +1,7 @@
 package syntax;
 
 import semantic.Env;
+import semantic.TypeMismatchException;
 import type.ListType;
 import type.Type;
 
@@ -26,5 +27,11 @@ public class Nil extends ListValue{
 	@Override
 	public boolean equals(Value other) {
 		return other instanceof Nil;
+	}
+	
+	public void check(Type type) {
+		if (type instanceof ListType == false) {
+			throw new TypeMismatchException(type, this.getType());
+		}
 	}
 }
