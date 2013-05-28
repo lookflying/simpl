@@ -4,7 +4,7 @@ function run(){
 	echo "-------------------------"
 	echo "file: $1"
 	file=$1
-	java -cp bin:src/java-cup-11a-runtime.jar run.Main $1 > $tmp
+	java -cp bin:lib/java-cup-11a-runtime.jar:lib/commons-cli-1.2.jar run.Main $1 > $tmp
 	rtval=$?
 	echo "return value = $rtval"
 	if [ $rtval -eq 0 ]
