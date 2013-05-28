@@ -198,6 +198,9 @@ public class SimPL {
 					out.print("SimPL> ");
 				}
 			}
+			if (printPrompt == false && bufsize != 0) {
+				System.err.println("script not ended");
+			}
 		} catch (FileNotFoundException e) {
 			System.err.println("cannot open file: " + e.getMessage());
 			System.exit(-1);
