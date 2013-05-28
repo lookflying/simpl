@@ -43,6 +43,7 @@ precedence nonassoc EQ, GT, LT;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
 precedence right UMINUS, NOT;
+precedence right FST, SND, HEAD, TAIL;
 
 start with program;
 
