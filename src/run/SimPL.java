@@ -49,17 +49,19 @@ public class SimPL {
 			CommandLineParser parser = new PosixParser();
 			CommandLine cmd = parser.parse(options, args);
 			
-			String outfile = null;
-			if (cmd.hasOption("o")) {
-				outfile = cmd.getOptionValue("o", null);
-			}
-			
 			if (cmd.hasOption("h")) {
 				printUsage();
 			} else if (cmd.hasOption("s")) {
-				run(null, outfile, true);
+				run(null, null, true);
 			} else if (cmd.hasOption("f")) {
-				run(cmd.getOptionValue("f"), outfile, false);
+				String infile = cmd.getOptionValue("f", "");
+				String outfile = null;
+				if (cmd.hasOption("o")) {
+					outfile = cmd.getOptionValue("o");
+				} else {
+					outfile = infile.split("\\.[a-z0-9]+$")[0] + ".rst";
+				}
+				run(infile, outfile, false);
 			} else {
 				printUsage();
 				System.exit(-1);
@@ -113,7 +115,7 @@ public class SimPL {
 			int linenum = 0;
 			
 			if (printPrompt) {
-				System.out.print("SimPL> ");
+				out.print("SimPL> ");
 			}
 			while (in.hasNextLine()) {
 				// read a line from stdin
@@ -122,7 +124,7 @@ public class SimPL {
 				// then just ingore
 				if (line.trim().isEmpty() && bufsize == 0) {
 					if (printPrompt) {
-						System.out.print("SimPL> ");
+						out.print("SimPL> ");
 					}
 					continue;
 				}
@@ -147,7 +149,7 @@ public class SimPL {
 					// print error message and continue
 					System.err.println("Error: A script should be less than " + MAX_BUF_SIZE + " characters");
 					if (printPrompt) {
-						System.out.print("SimPL> ");
+						out.print("SimPL> ");
 					}
 					continue;
 				}
@@ -177,7 +179,7 @@ public class SimPL {
 						continue;
 					}
 					ErrorMessage.init(pos.line, pos.column);
-					runScript(script + "$");
+					runScript(script + "$", out);
 				}
 				
 				// clear script positions
@@ -193,7 +195,7 @@ public class SimPL {
 				linenum = 0;
 				// print error message and continue
 				if (printPrompt) {
-					System.out.print("SimPL> ");
+					out.print("SimPL> ");
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -238,17 +240,17 @@ public class SimPL {
 	 * @param script script string, should end with $
 	 * @return 0 if succeeded otherwise 1
 	 */
-	public static int runScript(String script) {
+	public static int runScript(String script, PrintWriter out) {
 		int retval = 1;
 		try {
 			parser p = new parser(new Lexer(new ByteArrayInputStream(script.getBytes())));
 			p.parse();
 			Env env = new Env();
-			System.out.println(p.result.execute(env));
+			out.println(p.result.execute(env));
 			retval = 0;
 		} catch (SimplException e) {
-			System.out.println(e.getMessage());
-			System.out.println(ErrorMessage.pos());
+			System.err.println(e.getMessage());
+			System.err.println(ErrorMessage.pos());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
