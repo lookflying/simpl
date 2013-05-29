@@ -1,0 +1,10 @@
+let
+	b = 2
+in
+	let 
+		a =fun x->( b:=1; fun y -> x+y)
+	in
+		((a 1) 2)
+	end
+end
+$
