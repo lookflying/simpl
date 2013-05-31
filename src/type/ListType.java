@@ -11,20 +11,22 @@ public class ListType extends Type {
 		super();
 		this.elementType = elementType;
 	}
-	
+
 	private static ListType dummyInstance = new ListType(NullType.getInstance());
 
 	public static ListType getDummyInstance() {
 		return dummyInstance;
 	}
-	
+
 	@Override
 	public boolean equals(Type other) {
 		if (other == null || (other instanceof ListType) == false) {
 			return false;
 		}
-		ListType otheListType = (ListType)other;
-		return elementType == null || elementType.equals(otheListType.elementType);
+		ListType otherListType = (ListType) other;
+		return elementType == NullType.getInstance()
+				|| elementType.equals(otherListType.elementType)
+				|| otherListType == ListType.getDummyInstance();//other ==Nil
 	}
 
 	@Override
