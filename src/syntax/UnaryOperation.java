@@ -55,4 +55,8 @@ public class UnaryOperation extends Expression {
 			throw new UnexpectedException();
 		}
 	}
+
+	public UnaryOperation clone() {
+		return new UnaryOperation(op, e.clone(), line, column);
+	}
 }

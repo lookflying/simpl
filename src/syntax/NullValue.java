@@ -24,5 +24,9 @@ public class NullValue extends Value {
 	public boolean equals(Value other) {
 		return other instanceof NullValue;
 	}
+	
+	public NullValue clone(){
+		return new NullValue(line, column);
+	}
 
 }

@@ -53,4 +53,9 @@ public class AnonymousFunction extends Value {
 		}
 		throw new UnexpectedException("cannot compare two AnonymousFunction values");
 	}
+	public AnonymousFunction clone(){
+		AnonymousFunction ret = new AnonymousFunction(arg.name, arg.line, arg.column, body.clone(), line, column);
+		ret.execBlock = execBlock.clone();
+		return ret;
+	}
 }

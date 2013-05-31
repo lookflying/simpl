@@ -23,4 +23,7 @@ public class Sequence extends Expression{
 		Value v = e2.execute(env);
 		return v;
 	}
+	public Sequence clone(){
+		return new Sequence(e1.clone(), e2.clone(), line, column);
+	}
 }

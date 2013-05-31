@@ -31,5 +31,13 @@ public class UnitValue extends Value {
 	public boolean equals(Value other) {
 		return other instanceof UnitValue;
 	}
+	
+	public String toString(){
+		return "()";
+	}
+	
+	public UnitValue clone(){
+		return new UnitValue(line, column);
+	}
 
 }

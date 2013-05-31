@@ -28,4 +28,8 @@ public class Nop extends Value {
 	public boolean equals(Value other) {
 		return other instanceof Nop;
 	}
+	
+	public Nop clone(){
+		return new Nop(line, column);
+	}
 }

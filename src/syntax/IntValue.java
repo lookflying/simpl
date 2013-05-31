@@ -4,7 +4,7 @@ import semantic.Env;
 import type.IntType;
 import type.Type;
 
-public class IntValue extends Value{
+public class IntValue extends Value {
 	boolean isUndef;
 	int value;
 
@@ -21,19 +21,20 @@ public class IntValue extends Value{
 		value = i;
 		isUndef = false;
 	}
-	
-	public IntValue(int l, int c){
+
+	public IntValue(int l, int c) {
 		super(l, c);
 		isUndef = true;
 		value = 0;
 	}
 
-	public String toString(){
-		if(isUndef)
+	public String toString() {
+		if (isUndef)
 			return "undef";
 		else
 			return String.valueOf(value);
 	}
+
 	public Value execute(Env env) {
 		report();
 		return this;
@@ -43,15 +44,22 @@ public class IntValue extends Value{
 	public Type getType() {
 		return IntType.getInstance();
 	}
-	
-
 
 	@Override
 	public boolean equals(Value other) {
 		if (other instanceof IntValue == false) {
 			return false;
 		}
-		IntValue iv = (IntValue)other;
-		return this.isUndef == iv.isUndef && (isUndef == true || this.value == iv.value);
+		IntValue iv = (IntValue) other;
+		return this.isUndef == iv.isUndef
+				&& (isUndef == true || this.value == iv.value);
+	}
+
+	public IntValue clone() {
+		IntValue ret = new IntValue(line, column);
+		ret.value = this.value;
+		ret.isUndef = this.isUndef;
+		return ret;
+
 	}
 }

@@ -30,4 +30,7 @@ public class Assignment extends Expression{
 			return UnitValue.getInstance();
 		}		
 	}
+	public Assignment clone(){
+		return new Assignment(var.clone(), var.clone(), line, column);
+	}
 }

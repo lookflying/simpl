@@ -26,4 +26,8 @@ public class Tail extends Expression{
 		ListValue lv = (ListValue)v;
 		return lv.tail;
 	}
+	
+	public Tail clone(){
+		return new Tail(e.clone(), line, column);
+	}
 }

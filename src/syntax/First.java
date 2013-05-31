@@ -27,4 +27,8 @@ public class First extends Expression{
 		
 		return pv.e1;
 	}
+	
+	public First clone(){
+		return new First(e.clone(), line, column);
+	}
 }

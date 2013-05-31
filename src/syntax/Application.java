@@ -28,9 +28,12 @@ public class Application extends Expression {
 		AnonymousFunction function = (AnonymousFunction)funcvaluexx;
 		Value paramvalue = param.execute(env);
 		env.beginScope(function.execBlock);
-		env.onion(function.getArg().name, paramvalue);
+		env.onion(function.getArg().name, paramvalue.clone());
 		Value rval = function.getBody().execute(env);
 		env.endScope();
 		return rval;
+	}
+	public Expression clone(){
+		return new Application(func.clone(), param.clone(), line, column);
 	}
 }

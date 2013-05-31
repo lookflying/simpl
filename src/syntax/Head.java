@@ -26,4 +26,8 @@ public class Head extends Expression {
 		ListValue lv = (ListValue)v;
 		return lv.head;
 	}
+	
+	public Head clone(){
+		return new Head(e.clone(), line, column);
+	}
 }

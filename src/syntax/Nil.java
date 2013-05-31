@@ -34,4 +34,7 @@ public class Nil extends ListValue{
 			throw new TypeMismatchException(type, this.getType());
 		}
 	}
+	public Nil clone(){
+		return new Nil(line, column);
+	}
 }

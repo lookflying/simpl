@@ -20,5 +20,8 @@ public class Bracket extends Expression{
 		return e.execute(env);
 	}
 	
+	public Bracket clone(){
+		return new Bracket(e.clone(), line, column);
+	}
 	
 }

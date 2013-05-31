@@ -147,4 +147,9 @@ public class BinaryOperation extends Expression {
 		}
 		throw new UnexpectedException();
 	}
+
+	public BinaryOperation clone() {
+		return new BinaryOperation(e1.clone(), op, e2.clone(), line, column);
+
+	}
 }

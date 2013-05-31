@@ -23,4 +23,8 @@ public class List extends Expression {
 		Value tvalue = tail.execute(env);
 		return new ListValue(hvalue, tvalue, line, column);
 	}
+
+	public List clone() {
+		return new List(head.clone(), tail.clone(), line, column);
+	}
 }

@@ -26,4 +26,8 @@ public class Second extends Expression{
 		PairValue pv = (PairValue)v;
 		return pv.e2;
 	}
+	
+	public Second clone(){
+		return new Second(e.clone(), line, column);
+	}
 }

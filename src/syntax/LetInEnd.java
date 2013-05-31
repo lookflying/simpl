@@ -30,4 +30,9 @@ public class LetInEnd extends Expression {
 		env.endScope();
 		return rval;
 	}
+
+	public LetInEnd clone() {
+		return new LetInEnd(x.name, x.line, x.column, definition.clone(),
+				body.clone(), line, column);
+	}
 }

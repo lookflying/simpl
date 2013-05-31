@@ -45,7 +45,6 @@ public class BoolValue extends Value {
 	public Type getType() {
 		return BoolType.getInstance();
 	}
-	
 
 	public boolean getValue() {
 		return value;
@@ -58,5 +57,12 @@ public class BoolValue extends Value {
 		}
 		BoolValue bv = (BoolValue) other;
 		return this.value == bv.value;
+	}
+
+	public BoolValue clone() {
+		BoolValue ret = new BoolValue(line, column);
+		ret.value = this.value;
+		ret.isUndef = this.isUndef;
+		return ret;
 	}
 }
