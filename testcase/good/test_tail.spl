@@ -6,8 +6,9 @@ let
 			while
 				not (tail list = nil)
 			do
-				n := n + 1;
-				list := tail list
+				
+				list := tail list;
+				n := n+1
 			end;
 			n
 		end

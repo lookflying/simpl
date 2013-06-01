@@ -31,6 +31,6 @@ public class Assignment extends Expression{
 		}		
 	}
 	public Assignment clone(){
-		return new Assignment(var.clone(), var.clone(), line, column);
+		return new Assignment(var.clone(), val.clone(), line, column);
 	}
 }
