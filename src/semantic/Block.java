@@ -39,6 +39,7 @@ public class Block implements Cloneable{
 	
 	public Block clone(){
 		Block nb = new Block();
+		nb.father = this.father;
 		nb.memory = this.memory.clone();
 		return nb;
 	}

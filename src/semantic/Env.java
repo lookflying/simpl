@@ -19,10 +19,11 @@ public class Env {
 	public void beginScope(Block funBlock) {
 		if (funBlock != currentBlock) {
 			funBlock.setFather(currentBlock);
-			currentBlock = funBlock;
 		} else {
-			blockDupCount++;
+			Block lastBlock = funBlock.clone();
+			funBlock.setFather(lastBlock);
 		}
+		currentBlock = funBlock;
 	}
 
 	public Block getCurrentBlock() {
@@ -30,18 +31,14 @@ public class Env {
 	}
 
 	public void endScope() {
-		if (blockDupCount > 0) {
-			blockDupCount--;
-		} else {
-			currentBlock = currentBlock.father;
-		}
+		currentBlock = currentBlock.father;
 	}
 
-//	public void endScope(Block funBlock) {
-//		if (funBlock != currentBlock.father) {
-//			currentBlock = currentBlock.father;
-//		}
-//	}
+	// public void endScope(Block funBlock) {
+	// if (funBlock != currentBlock.father) {
+	// currentBlock = currentBlock.father;
+	// }
+	// }
 
 	public Value lookUpValue(String id) {
 		Block b = currentBlock;
@@ -61,6 +58,16 @@ public class Env {
 
 	public void onion(String id, Value v) {
 		currentBlock.onion(id, v);
+	}
+
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		Block b = currentBlock;
+		while (b != null) {
+			sb.append(b.toString() + "\n");
+			b = b.father;
+		}
+		return sb.toString();
 	}
 
 }
