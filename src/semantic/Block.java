@@ -1,16 +1,15 @@
 package semantic;
 
-import java.util.HashMap;
 
 import syntax.Value;
 
 public class Block implements Cloneable{
 	Block father;
-	Map<Value> memory;
+	Map memory;
 
 	public Block() {
 		father = null;
-		memory = new Map<Value>();
+		memory = new Map();
 	}
 
 	public void setFather(Block f) {
@@ -23,7 +22,7 @@ public class Block implements Cloneable{
 
 	public Block(Block f) {
 		father = f;
-		memory = new Map<Value>();
+		memory = new Map();
 	}
 
 	public Value getValue(String id) {
@@ -40,7 +39,7 @@ public class Block implements Cloneable{
 	
 	public Block clone(){
 		Block nb = new Block();
-		nb.memory = (Map<Value>) this.memory.clone();
+		nb.memory = this.memory.clone();
 		return nb;
 	}
 

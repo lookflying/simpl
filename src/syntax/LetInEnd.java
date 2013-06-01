@@ -25,7 +25,7 @@ public class LetInEnd extends Expression {
 		report();
 		env.beginScope();
 		Value xval = definition.execute(env);
-		env.createEntry(x.name, xval);
+		env.createEntry(x.name, xval.clone());
 		Value rval = body.execute(env);
 		env.endScope();
 		return rval;

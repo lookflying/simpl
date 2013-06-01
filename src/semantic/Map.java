@@ -1,24 +1,39 @@
 package semantic;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
-public class Map<T> implements Cloneable{
-	HashMap<String, T> map;
+import syntax.Value;
+
+public class Map implements Cloneable{
+	HashMap<String, Value> map;
 	public Map(){
-		map = new HashMap<String, T>();
+		map = new HashMap<String, Value>();
 	}
-	public void onion(String id, T t){
-		map.put(id, t);
+	public void onion(String id, Value v){
+		map.put(id, v);
 	}
-	public T query(String id){
+	public Value query(String id){
 		return map.get(id);
 	}
 	public String toString(){
 		return map.toString();
 	}
 	
-	public Map<T> clone(){
-		Map<T> newMap = new Map<T>();
-		newMap.map = (HashMap<String, T>) this.map.clone();
+	public Map clone(){
+		Map newMap = new Map();
+		newMap.map = cloneMap(map);
 		return newMap;		
+	}
+	
+	private HashMap<String, Value> cloneMap(HashMap<String ,Value> m){
+		HashMap<String, Value> nm = new HashMap<String, Value>();
+		Iterator<Entry<String, Value>> it = m.entrySet().iterator();
+		while(it.hasNext()){
+			Entry<String, Value> pair = it.next();
+			nm.put(pair.getKey(), pair.getValue().clone());
+		}
+		return nm;
+		
 	}
 }

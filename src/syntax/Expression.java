@@ -17,7 +17,7 @@ public abstract class Expression implements Cloneable{
 	}
 
 	abstract public Value execute(Env env);
-	
+//	abstract public Expression reduce(Env env);
 	public Expression clone()
 	{
 		throw new UnexpectedException("Expression can't be cloned");
