@@ -57,7 +57,20 @@ public class Env {
 	}
 
 	public void onion(String id, Value v) {
-		currentBlock.onion(id, v);
+		Block b = currentBlock;
+		boolean done = false;
+		while (b != null) {
+			if (b.getValue(id) != null) {
+				b.onion(id, v);
+				done = true;
+				break;
+			} else {
+				b = b.father;
+			}
+		}
+		if (done == false) {//Should onion if id doesn't exist?
+			currentBlock.onion(id, v);
+		}
 	}
 
 	public String toString() {
