@@ -8,6 +8,8 @@ import type.Type;
 public class Nil extends ListValue{
 	public Nil(int l, int c) {
 		super(l, c);
+		super.head = this;
+		super.tail = this;
 	}
 	public String toString(){
 		return "nil";
