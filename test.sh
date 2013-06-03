@@ -9,9 +9,10 @@ function run(){
 	echo "return value = $rtval"
 	if [ $rtval -eq 0 ]
 	then
-		echo "pass"
+		echo -e "\e[;32mpass\e[0m"
 		cat $tmp
 	else
+		echo -e "\e[;31mfail\e[0m"
 		cat $tmp
 	fi
 	echo "_________________________"
