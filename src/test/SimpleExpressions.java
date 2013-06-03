@@ -22,6 +22,7 @@ public class SimpleExpressions {
 		runScript("head (8::nil)$", 8);
 		runScript("head ((1=2)::nil)$", false);
 		runScript("tail (5::9::nil)$", "[9]");
+		runScript("head nil$", "nil");
 	}
 
 	@Test
