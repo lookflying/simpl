@@ -24,7 +24,11 @@ public class Head extends Expression {
 			throw new TypeMismatchException(ListType.getDummyInstance(), v.getType());
 		}
 		ListValue lv = (ListValue)v;
-		return lv.head;
+		if (lv instanceof Nil) {
+			return new Nil(line, column);
+		} else {
+			return lv.head;
+		}
 	}
 	
 	public Head clone(){

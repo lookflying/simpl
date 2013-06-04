@@ -24,7 +24,11 @@ public class Tail extends Expression{
 			throw new TypeMismatchException(ListType.getDummyInstance(), v.getType());
 		}
 		ListValue lv = (ListValue)v;
-		return lv.tail;
+		if (lv.tail instanceof Nil) {
+			return new Nil(line, column);
+		} else {
+			return lv.tail;
+		}
 	}
 	
 	public Tail clone(){
