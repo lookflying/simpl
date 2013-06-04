@@ -24,7 +24,7 @@ public class Tail extends Expression{
 			throw new TypeMismatchException(ListType.getDummyInstance(), v.getType());
 		}
 		ListValue lv = (ListValue)v;
-		if (lv.tail instanceof Nil) {
+		if (lv instanceof Nil) {
 			return new Nil(line, column);
 		} else {
 			return lv.tail;
