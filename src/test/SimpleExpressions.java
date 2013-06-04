@@ -19,9 +19,10 @@ public class SimpleExpressions {
 		runScript("5::nil$", "[5]");
 		runScript("9::4343::nil$", "[9 4343]");
 		
-		runScript("head 8::nil$", 8);
-		runScript("head (1=2)::nil$", false);
-		runScript("tail 5::9::nil$", "[9]");
+		runScript("head (8::nil)$", 8);
+		runScript("head ((1=2)::nil)$", false);
+		runScript("tail (5::9::nil)$", "[9]");
+		runScript("head nil$", "nil");
 	}
 
 	@Test
